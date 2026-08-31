@@ -1,0 +1,107 @@
+
+======================================================================
+PENNYLANE — QUANTUM CIRCUITS
+======================================================================
+
+  ghz
+    built: 4 gates, 3 two-qubit gates, 4 wires
+    light      2 transforms, ops 4 -> 4
+    medium     5 transforms, ops 4 -> 5
+    heavy      7 transforms, ops 4 -> 5
+    decompose  4 transforms, ops 4 -> 4
+
+  qft
+    built: 10 gates, 6 two-qubit gates, 4 wires
+    light      2 transforms, ops 10 -> 10
+    medium     5 transforms, ops 10 -> 11
+    heavy      7 transforms, ops 10 -> 11
+    decompose  4 transforms, ops 10 -> 28
+
+  full_entangle
+    built: 10 gates, 6 two-qubit gates, 4 wires
+    light      2 transforms, ops 10 -> 10
+    medium     5 transforms, ops 10 -> 11
+    heavy      7 transforms, ops 10 -> 11
+    decompose  4 transforms, ops 10 -> 31
+
+  redundant
+    built: 22 gates, 6 two-qubit gates, 4 wires
+    light      2 transforms, ops 22 -> 0
+    medium     5 transforms, ops 22 -> 0
+    heavy      7 transforms, ops 22 -> 0
+    decompose  4 transforms, ops 22 -> 0
+
+  rotations
+    built: 28 gates, 0 two-qubit gates, 4 wires
+    light      2 transforms, ops 28 -> 8
+    medium     5 transforms, ops 28 -> 4
+    heavy      7 transforms, ops 28 -> 4
+    decompose  4 transforms, ops 28 -> 4
+
+  layered
+    built: 33 gates, 9 two-qubit gates, 4 wires
+    light      2 transforms, ops 33 -> 33
+    medium     5 transforms, ops 33 -> 21
+    heavy      7 transforms, ops 33 -> 21
+    decompose  4 transforms, ops 33 -> 21
+
+  with_swaps
+    built: 7 gates, 6 two-qubit gates, 4 wires
+    light      2 transforms, ops 7 -> 7
+    medium     5 transforms, ops 7 -> 5
+    heavy      7 transforms, ops 7 -> 5
+    decompose  4 transforms, ops 7 -> 13
+
+====================================================================================
+TRANSFORM EXECUTION SUMMARY
+====================================================================================
+
+Transform                       runs  no-op   no-op%        ms     memKB  d_ops  d_2q
+------------------------------------------------------------------------------------
+cancel_inverses                   28     24      86%     16.72     103.2    -88   -24
+cancel_inverses_2                  7      7     100%      2.92      16.2      0     0
+commute_controlled                14     14     100%      4.32      34.7      0     0
+decompose                          7      3      43%      7.44     124.9     74    18
+merge_rotations                   28     22      79%     30.99     292.3    -89     0
+merge_rotations_2                  7      7     100%      4.47      43.0      0     0
+single_qubit_fusion               21      3      14%     81.97     188.5    -60     0
+undo_swaps                        14     12      86%      9.60     163.8     -6    -6
+------------------------------------------------------------------------------------
+TOTAL                            126     92      73%    158.44     966.7
+
+Time spent on transforms that changed nothing: 49.97 ms (32% of total)
+
+Slowest transforms:
+  single_qubit_fusion               81.97 ms  (51.7% of total, 21 runs)
+  merge_rotations                   30.99 ms  (19.6% of total, 28 runs)
+  cancel_inverses                   16.72 ms  (10.6% of total, 28 runs)
+  undo_swaps                         9.60 ms  ( 6.1% of total, 14 runs)
+  decompose                          7.44 ms  ( 4.7% of total, 7 runs)
+
+
+ seq transform                          ms   memKB  chg        ops     depth      2q   params
+---------------------------------------------------------------------------------------------
+   0 cancel_inverses                 0.476    19.9    F       4->4      4->4    3->3     0->0
+   1 merge_rotations                 0.114     8.4    F       4->4      4->4    3->3     0->0
+   0 cancel_inverses                 0.295     3.2    F       4->4      4->4    3->3     0->0
+   1 merge_rotations                 0.059     2.2    F       4->4      4->4    3->3     0->0
+   2 single_qubit_fusion             1.215    27.0    T       4->5      4->5    3->3     0->4
+   3 commute_controlled              0.160     5.8    F       5->5      5->5    3->3     4->4
+   4 undo_swaps                      0.567    22.6    F       5->5      5->5    3->3     4->4
+   0 cancel_inverses                 0.304     3.8    F       4->4      4->4    3->3     0->0
+   1 merge_rotations                 0.066     2.2    F       4->4      4->4    3->3     0->0
+   2 single_qubit_fusion             0.684     4.4    T       4->5      4->5    3->3     0->4
+   3 commute_controlled              0.151     2.1    F       5->5      5->5    3->3     4->4
+   4 undo_swaps                      0.521     9.9    F       5->5      5->5    3->3     4->4
+   5 cancel_inverses_2               0.305     4.2    F       5->5      5->5    3->3     4->4
+   6 merge_rotations_2               0.249     5.0    F       5->5      5->5    3->3     4->4
+   0 cancel_inverses                 0.279     2.9    F       4->4      4->4    3->3     0->0
+   1 decompose                       0.404    17.3    T       4->6      4->6    3->3     0->3
+   2 merge_rotations                 0.330    11.0    F       6->6      6->6    3->3     3->3
+   3 single_qubit_fusion             2.164    13.6    T       6->4      6->4    3->3     3->3
+   0 cancel_inverses                 0.436     5.9    F     10->10      7->7    6->6     6->6
+   1 merge_rotations                 1.157    15.8    F     10->10      7->7    6->6     6->6
+  ... 106 more events
+
+
+Wrote 126 events x 32 columns to quantum_pass_log.csv

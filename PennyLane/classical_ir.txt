@@ -1,0 +1,98 @@
+
+======================================================================
+PENNYLANE — CLASSICAL STRUCTURE
+======================================================================
+
+  param_arithmetic
+    built: 11 ops, 4 wires, 0 mid-circuit ops
+    light    2 transforms, ops 11 -> 11
+    medium   3 transforms, ops 11 -> 7
+    heavy    6 transforms, ops 11 -> 7
+
+  deep_arithmetic
+    built: 12 ops, 4 wires, 0 mid-circuit ops
+    light    2 transforms, ops 12 -> 12
+    medium   3 transforms, ops 12 -> 4
+    heavy    6 transforms, ops 12 -> 4
+
+  mid_measure
+    built: 5 ops, 4 wires, 1 mid-circuit ops
+    light    2 transforms, ops 5 -> 5
+    medium   3 transforms, ops 5 -> 6
+    heavy    6 transforms, ops 5 -> 6
+
+  conditional
+    built: 4 ops, 3 wires, 2 mid-circuit ops
+    light    2 transforms, ops 4 -> 4
+    medium   3 transforms, ops 4 -> 5
+    heavy    6 transforms, ops 4 -> 5
+
+  feedforward
+    built: 9 ops, 4 wires, 4 mid-circuit ops
+    light    2 transforms, ops 9 -> 9
+    medium   3 transforms, ops 9 -> 10
+    heavy    6 transforms, ops 9 -> 10
+
+  cancelling_params
+    built: 16 ops, 4 wires, 0 mid-circuit ops
+    light    2 transforms, ops 16 -> 0
+    medium   3 transforms, ops 16 -> 0
+    heavy    6 transforms, ops 16 -> 0
+
+  no_classical
+    built: 4 ops, 4 wires, 0 mid-circuit ops
+    light    2 transforms, ops 4 -> 4
+    medium   3 transforms, ops 4 -> 5
+    heavy    6 transforms, ops 4 -> 5
+
+====================================================================================
+TRANSFORM EXECUTION SUMMARY
+====================================================================================
+
+Transform                       runs  no-op   no-op%        ms     memKB  d_ops  d_2q
+------------------------------------------------------------------------------------
+cancel_inverses                   21     21     100%      6.78      74.2      0     0
+cancel_inverses_2                  7      7     100%      1.50      16.6      0     0
+commute_controlled                 7      7     100%      1.23      15.8      0     0
+merge_rotations                   21     18      86%     10.57     231.1    -48     0
+single_qubit_fusion               14      2      14%     30.65      94.7    -16     0
+undo_swaps                         7      7     100%      2.45      63.3      0     0
+------------------------------------------------------------------------------------
+TOTAL                             77     62      81%     53.18     495.7
+
+Time spent on transforms that changed nothing: 19.07 ms (36% of total)
+
+Slowest transforms:
+  single_qubit_fusion               30.65 ms  (57.6% of total, 14 runs)
+  merge_rotations                   10.57 ms  (19.9% of total, 21 runs)
+  cancel_inverses                    6.78 ms  (12.7% of total, 21 runs)
+  undo_swaps                         2.45 ms  ( 4.6% of total, 7 runs)
+  cancel_inverses_2                  1.50 ms  ( 2.8% of total, 7 runs)
+
+
+ seq transform                          ms   memKB  chg        ops     depth      2q   params
+---------------------------------------------------------------------------------------------
+   0 cancel_inverses                 0.783    20.1    F     11->11      5->5    3->3     8->8
+   1 merge_rotations                 0.969    20.4    F     11->11      5->5    3->3     8->8
+   0 cancel_inverses                 0.544     4.0    F     11->11      5->5    3->3     8->8
+   1 merge_rotations                 0.849    12.8    F     11->11      5->5    3->3     8->8
+   2 single_qubit_fusion             5.855    34.3    T      11->7      5->4    3->3    8->12
+   0 cancel_inverses                 0.780     4.5    F     11->11      5->5    3->3     8->8
+   1 merge_rotations                 1.040     9.7    F     11->11      5->5    3->3     8->8
+   2 single_qubit_fusion             4.178     6.0    T      11->7      5->4    3->3    8->12
+   3 commute_controlled              0.342     5.5    F       7->7      4->4    3->3   12->12
+   4 undo_swaps                      0.622    21.9    F       7->7      4->4    3->3   12->12
+   5 cancel_inverses_2               0.458     5.0    F       7->7      4->4    3->3   12->12
+   0 cancel_inverses                 0.262     5.8    F     12->12      3->3    0->0   12->12
+   1 merge_rotations                 0.887    14.0    F     12->12      3->3    0->0   12->12
+   0 cancel_inverses                 0.241     1.1    F     12->12      3->3    0->0   12->12
+   1 merge_rotations                 0.812    10.7    F     12->12      3->3    0->0   12->12
+   2 single_qubit_fusion             6.065    11.7    T      12->4      3->1    0->0   12->12
+   0 cancel_inverses                 0.262     1.1    F     12->12      3->3    0->0   12->12
+   1 merge_rotations                 0.694    11.2    F     12->12      3->3    0->0   12->12
+   2 single_qubit_fusion             6.467     7.7    T      12->4      3->1    0->0   12->12
+   3 commute_controlled              0.099     1.1    F       4->4      1->1    0->0   12->12
+  ... 57 more events
+
+
+Wrote 77 events x 32 columns to classical_pass_log.csv
