@@ -1,0 +1,111 @@
+
+======================================================================
+QISKIT — CLASSICAL STRUCTURE
+======================================================================
+
+  measure_only
+    built: 8 instructions, depth 5, 4 classical bits
+    level 0:   5 passes,    2.49 ms
+    level 1:  19 passes,    4.02 ms
+    level 2:  30 passes,    5.05 ms
+    level 3:  37 passes,    4.50 ms
+
+  conditional
+    built: 7 instructions, depth 4, 4 classical bits
+    level 0:   5 passes,    1.77 ms
+    level 1:  19 passes,    3.29 ms
+    level 2:  30 passes,    5.12 ms
+    level 3:  37 passes,    6.41 ms
+
+  feedforward
+    built: 13 instructions, depth 7, 4 classical bits
+    level 0:   5 passes,    1.31 ms
+    level 1:  19 passes,    3.99 ms
+    level 2:  30 passes,    6.37 ms
+    level 3:  37 passes,    8.31 ms
+
+  param_arithmetic
+    built: 15 instructions, depth 6, 4 classical bits
+    level 0:   5 passes,    1.13 ms
+    level 1:  27 passes,    2.40 ms
+    level 2:  39 passes,    3.08 ms
+    level 3:  37 passes,    3.20 ms
+
+  reset_reuse
+    built: 10 instructions, depth 7, 4 classical bits
+    level 0:   5 passes,    0.78 ms
+    level 1:  19 passes,    1.60 ms
+    level 2:  30 passes,    2.60 ms
+    level 3:  37 passes,    3.68 ms
+
+  no_classical
+    built: 4 instructions, depth 4, 0 classical bits
+    level 0:   5 passes,    0.76 ms
+    level 1:  19 passes,    1.19 ms
+    level 2:  30 passes,    1.99 ms
+    level 3:  37 passes,    2.47 ms
+
+====================================================================================
+PASS EXECUTION SUMMARY
+====================================================================================
+
+Pass                                  runs  no-op   no-op%        ms   d_ops    d_2q
+------------------------------------------------------------------------------------
+BasisTranslator                         36     32      89%      5.80       0       0
+CommutativeCancellation                 31     31     100%      4.42       0       0
+ConsolidateBlocks                       12     12     100%      2.98       0       0
+ContainsInstruction                     48     48     100%      0.67       0       0
+ContractIdleWiresInControlFlow          44     44     100%      1.87       0       0
+Depth                                   44     44     100%      0.34       0       0
+ElidePermutations                       12     12     100%      0.12       0       0
+FixedPoint                              52     52     100%      0.55       0       0
+GatesInBasis                            26     26     100%      0.26       0       0
+HighLevelSynthesis                      36     36     100%      0.82       0       0
+InverseCancellation                     25     25     100%      2.24       0       0
+MinimumPoint                            18     18     100%      0.50       0       0
+Optimize1qGatesDecomposition            26     23      88%      4.31     -12       0
+RemoveDiagonalGatesBeforeMeasure        12     12     100%      1.48       0       0
+RemoveIdentityEquivalent                31     31     100%      0.34       0       0
+Size                                    44     44     100%      0.29       0       0
+Split2QUnitaries                        12     12     100%      0.08       0       0
+TwoQubitPeepholeOptimization            18     18     100%      3.90       0       0
+UnitarySynthesis                        36     36     100%      0.42       0       0
+------------------------------------------------------------------------------------
+TOTAL                                  563    556      99%     31.38
+
+Time spent on passes that changed nothing: 29.82 ms (95% of total)
+
+Slowest passes:
+  BasisTranslator                          5.80 ms  (18.5% of total, 36 runs)
+  CommutativeCancellation                  4.42 ms  (14.1% of total, 31 runs)
+  Optimize1qGatesDecomposition             4.31 ms  (13.7% of total, 26 runs)
+  TwoQubitPeepholeOptimization             3.90 ms  (12.4% of total, 18 runs)
+  ConsolidateBlocks                        2.98 ms  ( 9.5% of total, 12 runs)
+
+
+ seq pass                                     ms  chg         ops     depth       2q
+------------------------------------------------------------------------------------
+   0 ContainsInstruction                   0.023    F        8->8      5->5     3->3
+   1 UnitarySynthesis                      0.013    F        8->8      5->5     3->3
+   2 HighLevelSynthesis                    0.011    F        8->8      5->5     3->3
+   3 BasisTranslator                       0.438    F        8->8      5->5     3->3
+   4 ContainsInstruction                   0.011    F        8->8      5->5     3->3
+   0 ContainsInstruction                   0.020    F        8->8      5->5     3->3
+   1 InverseCancellation                   0.021    F        8->8      5->5     3->3
+   2 ContractIdleWiresInControlFlow        0.007    F        8->8      5->5     3->3
+   3 UnitarySynthesis                      0.010    F        8->8      5->5     3->3
+   4 HighLevelSynthesis                    0.012    F        8->8      5->5     3->3
+   5 BasisTranslator                       0.152    F        8->8      5->5     3->3
+   6 Size                                  0.008    F        8->8      5->5     3->3
+   7 Depth                                 0.006    F        8->8      5->5     3->3
+   8 FixedPoint                            0.017    F        8->8      5->5     3->3
+   9 FixedPoint                            0.008    F        8->8      5->5     3->3
+  10 Optimize1qGatesDecomposition          1.039    F        8->8      5->5     3->3
+  11 InverseCancellation                   0.018    F        8->8      5->5     3->3
+  12 ContractIdleWiresInControlFlow        0.006    F        8->8      5->5     3->3
+  13 GatesInBasis                          0.033    F        8->8      5->5     3->3
+  14 Size                                  0.007    F        8->8      5->5     3->3
+  ... 543 more events
+
+
+Wrote 563 events x 27 columns to classical_pass_log.csv

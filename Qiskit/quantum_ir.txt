@@ -1,0 +1,173 @@
+
+======================================================================
+QISKIT — QUANTUM CIRCUITS
+======================================================================
+
+  ghz
+    built: 4 gates, depth 4, 3 two-qubit gates
+    level 0 / none      5 passes,    3.72 ms
+    level 0 / linear   16 passes,    2.70 ms
+    level 0 / ring     16 passes,    1.23 ms
+    level 1 / none     19 passes,    3.67 ms
+    level 1 / linear   31 passes,    1.89 ms
+    level 1 / ring     31 passes,    1.83 ms
+    level 2 / none     30 passes,    4.39 ms
+    level 2 / linear   38 passes,    3.17 ms
+    level 2 / ring     38 passes,    3.38 ms
+    level 3 / none     37 passes,    2.62 ms
+    level 3 / linear   46 passes,    4.35 ms
+    level 3 / ring     46 passes,    3.22 ms
+
+  qft
+    built: 10 gates, depth 7, 6 two-qubit gates
+    level 0 / none      5 passes,    1.17 ms
+    level 0 / linear   20 passes,    4.61 ms
+    level 0 / ring     20 passes,    2.58 ms
+    level 1 / none     27 passes,    2.84 ms
+    level 1 / linear   42 passes,    5.99 ms
+    level 1 / ring     42 passes,    5.30 ms
+    level 2 / none     39 passes,    3.88 ms
+    level 2 / linear   49 passes,    6.18 ms
+    level 2 / ring     49 passes,    5.71 ms
+    level 3 / none     37 passes,    3.78 ms
+    level 3 / linear   48 passes,    6.69 ms
+    level 3 / ring     48 passes,    6.40 ms
+
+  full_entangle
+    built: 10 gates, depth 6, 6 two-qubit gates
+    level 0 / none      5 passes,    0.88 ms
+    level 0 / linear   20 passes,    2.57 ms
+    level 0 / ring     20 passes,    2.53 ms
+    level 1 / none     27 passes,    2.19 ms
+    level 1 / linear   43 passes,    4.94 ms
+    level 1 / ring     42 passes,    4.43 ms
+    level 2 / none     48 passes,    3.73 ms
+    level 2 / linear   59 passes,    6.25 ms
+    level 2 / ring     58 passes,    5.92 ms
+    level 3 / none     46 passes,    3.82 ms
+    level 3 / linear   58 passes,    6.60 ms
+    level 3 / ring     57 passes,    6.18 ms
+
+  redundant
+    built: 22 gates, depth 10, 6 two-qubit gates
+    level 0 / none      5 passes,    0.84 ms
+    level 0 / linear   16 passes,    1.63 ms
+    level 0 / ring     16 passes,    1.64 ms
+    level 1 / none     19 passes,    0.99 ms
+    level 1 / linear   31 passes,    1.63 ms
+    level 1 / ring     31 passes,    1.76 ms
+    level 2 / none     30 passes,    1.62 ms
+    level 2 / linear   38 passes,    2.18 ms
+    level 2 / ring     38 passes,    2.21 ms
+    level 3 / none     37 passes,    1.86 ms
+    level 3 / linear   46 passes,    2.66 ms
+    level 3 / ring     46 passes,    2.47 ms
+
+  rotations
+    built: 28 gates, depth 7, 0 two-qubit gates
+    level 0 / none      5 passes,    1.06 ms
+    level 0 / linear   16 passes,    1.92 ms
+    level 0 / ring     16 passes,    1.87 ms
+    level 1 / none     27 passes,    2.08 ms
+    level 1 / linear   39 passes,    3.07 ms
+    level 1 / ring     39 passes,    3.12 ms
+    level 2 / none     39 passes,    2.86 ms
+    level 2 / linear   47 passes,    3.56 ms
+    level 2 / ring     47 passes,    3.54 ms
+    level 3 / none     37 passes,    2.75 ms
+    level 3 / linear   46 passes,    3.47 ms
+    level 3 / ring     46 passes,    3.62 ms
+
+  layered
+    built: 33 gates, depth 13, 9 two-qubit gates
+    level 0 / none      5 passes,    1.02 ms
+    level 0 / linear   16 passes,    2.00 ms
+    level 0 / ring     16 passes,    2.05 ms
+    level 1 / none     27 passes,    2.59 ms
+    level 1 / linear   39 passes,    3.62 ms
+    level 1 / ring     39 passes,    3.97 ms
+    level 2 / none     39 passes,    3.98 ms
+    level 2 / linear   47 passes,    4.71 ms
+    level 2 / ring     47 passes,    4.80 ms
+    level 3 / none     37 passes,    3.87 ms
+    level 3 / linear   46 passes,    5.02 ms
+    level 3 / ring     46 passes,    6.16 ms
+
+====================================================================================
+PASS EXECUTION SUMMARY
+====================================================================================
+
+Pass                                  runs  no-op   no-op%        ms   d_ops    d_2q
+------------------------------------------------------------------------------------
+ApplyLayout                             39     39     100%      3.51       0       0
+BarrierBeforeFinalMeasurements          16     16     100%      0.23       0       0
+BasisTranslator                        148     81      55%     23.34     516     156
+CheckGateDirection                      48     48     100%      0.53       0       0
+CheckMap                                60     60     100%      1.02       0       0
+CommutativeCancellation                108    102      94%      7.71     -72       0
+ConsolidateBlocks                       36     36     100%      3.03       0       0
+ContainsInstruction                    144    144     100%      1.51       0       0
+ContractIdleWiresInControlFlow         156    156     100%      0.73       0       0
+Depth                                  156    156     100%      0.79       0       0
+ElidePermutations                       36     36     100%      0.31       0       0
+EnlargeWithAncilla                      36     36     100%      0.43       0       0
+FilterOpNodes                           48     48     100%      1.00       0       0
+FixedPoint                             198    198     100%      1.39       0       0
+FullAncillaAllocation                   36     36     100%      0.73       0       0
+GateDirection                           16      0       0%      1.11     516       0
+GatesInBasis                           102    102     100%      0.72       0       0
+HighLevelSynthesis                     132    132     100%      1.10       0       0
+InverseCancellation                     84     75      89%      1.13    -198     -54
+MinimumPoint                            57     57     100%      1.25       0       0
+Optimize1qGatesDecomposition           102     66      65%      8.58    -370       0
+RemoveDiagonalGatesBeforeMeasure        36     36     100%      0.28       0       0
+RemoveIdentityEquivalent               108     98      91%      1.24     -22       0
+SabreLayout                             12      0       0%      6.23      30      30
+SabreSwap                                4      0       0%      2.38      12      12
+SetLayout                               48     48     100%      0.26       0       0
+Size                                   156    156     100%      0.78       0       0
+Split2QUnitaries                        36     36     100%      0.20       0       0
+TrivialLayout                           24     24     100%      1.40       0       0
+TwoQubitPeepholeOptimization            57     41      72%      6.86    -170     -18
+UnitarySynthesis                       132    132     100%      0.97       0       0
+VF2Layout                               28     28     100%      3.61       0       0
+VF2PostLayout                           24     24     100%      1.45       0       0
+------------------------------------------------------------------------------------
+TOTAL                                 2423   2247      93%     85.83
+
+Time spent on passes that changed nothing: 48.93 ms (57% of total)
+
+Slowest passes:
+  BasisTranslator                         23.34 ms  (27.2% of total, 148 runs)
+  Optimize1qGatesDecomposition             8.58 ms  (10.0% of total, 102 runs)
+  CommutativeCancellation                  7.71 ms  ( 9.0% of total, 108 runs)
+  TwoQubitPeepholeOptimization             6.86 ms  ( 8.0% of total, 57 runs)
+  SabreLayout                              6.23 ms  ( 7.3% of total, 12 runs)
+
+
+ seq pass                                     ms  chg         ops     depth       2q
+------------------------------------------------------------------------------------
+   0 ContainsInstruction                   0.018    F        4->4      4->4     3->3
+   1 UnitarySynthesis                      0.011    F        4->4      4->4     3->3
+   2 HighLevelSynthesis                    0.011    F        4->4      4->4     3->3
+   3 BasisTranslator                       1.009    F        4->4      4->4     3->3
+   4 ContainsInstruction                   0.022    F        4->4      4->4     3->3
+   0 ContainsInstruction                   0.015    F        4->4      4->4     3->3
+   1 UnitarySynthesis                      0.009    F        4->4      4->4     3->3
+   2 HighLevelSynthesis                    0.007    F        4->4      4->4     3->3
+   3 BasisTranslator                       0.024    F        4->4      4->4     3->3
+   4 SetLayout                             0.007    F        4->4      4->4     3->3
+   5 TrivialLayout                         0.068    F        4->4      4->4     3->3
+   6 FullAncillaAllocation                 0.025    F        4->4      4->4     3->3
+   7 EnlargeWithAncilla                    0.035    F        4->4      4->4     3->3
+   8 ApplyLayout                           0.473    F        4->4      4->4     3->3
+   9 CheckMap                              0.015    F        4->4      4->4     3->3
+  10 FilterOpNodes                         0.015    F        4->4      4->4     3->3
+  11 UnitarySynthesis                      0.005    F        4->4      4->4     3->3
+  12 HighLevelSynthesis                    0.006    F        4->4      4->4     3->3
+  13 BasisTranslator                       0.136    F        4->4      4->4     3->3
+  14 CheckGateDirection                    0.088    F        4->4      4->4     3->3
+  ... 2403 more events
+
+
+Wrote 2423 events x 27 columns to quantum_pass_log.csv
