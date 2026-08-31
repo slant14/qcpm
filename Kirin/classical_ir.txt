@@ -1,0 +1,148 @@
+
+==============================================================
+COMPILING: lots_of_constants
+==============================================================
+
+--- IR before any passes ---
+func.func @lots_of_constants(x : !py.int) -> !py.int {
+  ^0(%lots_of_constants_self, %x):
+  │ %0 = py.constant.constant 'Should fold heavily: most of this is computable at compile time.' : !py.str
+  │ %1 = py.constant.constant 2 : !py.int
+  │ %2 = py.constant.constant 3 : !py.int
+  │ %a = py.binop.add(%1, %2) : ~T
+  │ %3 = py.constant.constant 4 : !py.int
+  │ %b = py.binop.mult(%a, %3) : ~T
+  │ %4 = py.constant.constant 7 : !py.int
+  │ %c = py.binop.sub(%b, %4) : ~T
+  │ %5 = py.constant.constant 100 : !py.int
+  │ %d = py.binop.add(%c, %5) : ~T
+  │ %6 = py.binop.add(%d, %x : !py.int) : ~T
+  │      func.return %6
+} // func.func lots_of_constants
+
+--- IR after passes ---
+func.func @lots_of_constants(x : !py.int) -> !py.int {
+  ^0(%lots_of_constants_self, %x):
+  │ %d = py.constant.constant 113 : !py.int
+  │ %0 = py.binop.add(%d, %x : !py.int) : !py.int
+  │      func.return %0
+} // func.func lots_of_constants
+
+==============================================================
+COMPILING: dead_code
+==============================================================
+
+--- IR before any passes ---
+func.func @dead_code(x : !py.int) -> !py.int {
+  ^0(%dead_code_self, %x):
+  │        %0 = py.constant.constant 'Has unused variables that dead-code elimination should remove.' : !py.str
+  │ %unused_1 = py.constant.constant 111 : !py.int
+  │ %unused_2 = py.constant.constant 222 : !py.int
+  │ %unused_3 = py.binop.add(%unused_1, %unused_2) : ~T
+  │        %1 = py.constant.constant 1 : !py.int
+  │        %2 = py.binop.add(%x : !py.int, %1) : ~T
+  │             func.return %2
+} // func.func dead_code
+
+--- IR after passes ---
+func.func @dead_code(x : !py.int) -> !py.int {
+  ^0(%dead_code_self, %x):
+  │ %0 = py.constant.constant 1 : !py.int
+  │ %1 = py.binop.add(%x : !py.int, %0) : !py.int
+  │      func.return %1
+} // func.func dead_code
+
+==============================================================
+COMPILING: nothing_to_do
+==============================================================
+
+--- IR before any passes ---
+func.func @nothing_to_do(x : !py.int, y : !py.int) -> !py.int {
+  ^0(%nothing_to_do_self, %x, %y):
+  │ %0 = py.constant.constant 'Already minimal. Passes should mostly no-op here.' : !py.str
+  │ %1 = py.binop.add(%x : !py.int, %y : !py.int) : ~T
+  │      func.return %1
+} // func.func nothing_to_do
+
+--- IR after passes ---
+func.func @nothing_to_do(x : !py.int, y : !py.int) -> !py.int {
+  ^0(%nothing_to_do_self, %x, %y):
+  │ %0 = py.binop.add(%x : !py.int, %y : !py.int) : !py.int
+  │      func.return %0
+} // func.func nothing_to_do
+
+==============================================================
+COMPILING: with_a_loop
+==============================================================
+
+--- IR before any passes ---
+func.func @with_a_loop(n : !py.int) -> !py.int {
+  ^0(%with_a_loop_self, %n):
+  │       %0 = py.constant.constant 'Has control flow, so more passes get involved.' : !py.str
+  │   %total = py.constant.constant 0 : !py.int
+  │       %1 = py.constant.constant 0 : !py.int
+  │       %2 = py.constant.constant 1 : !py.int
+  │       %3 = py.ilist.range(start=%1, stop=%n : !py.int, step=%2) : !py.IList[!py.int, !Any]
+  │       %4 = py.iterable.iter(value=%3) : !Any
+  │       %5 = py.constant.constant None : !py.NoneType
+  │       %6 = py.iterable.next(iter=%4) : !Any
+  │       %7 = py.cmp.is(lhs=%6, rhs=%5) : !py.bool
+  │            cf.cond_br %7 goto ^2(%total) else ^1(%6, %total)
+  ^1(%i, %total_2):
+  │       %8 = py.constant.constant 2 : !py.int
+  │       %9 = py.binop.mult(%i, %8) : ~T
+  │ %total_1 = py.binop.add(%total_2 : !py.int, %9) : ~T
+  │      %10 = py.iterable.next(iter=%4) : !Any
+  │      %11 = py.cmp.is(lhs=%10, rhs=%5) : !py.bool
+  │            cf.cond_br %11 goto ^2(%total_1) else ^1(%10, %total_1)
+  ^2(%total_3):
+  │            func.return %total_3 : !py.int
+} // func.func with_a_loop
+
+--- IR after passes ---
+func.func @with_a_loop(n : !py.int) -> !py.int {
+  ^0(%with_a_loop_self, %n):
+  │   %total = py.constant.constant 0 : !py.int
+  │       %0 = py.constant.constant 0 : !py.int
+  │       %1 = py.constant.constant 1 : !py.int
+  │       %2 = py.ilist.range(start=%0, stop=%n : !py.int, step=%1) : !py.IList[!py.int, !Any]
+  │       %3 = py.iterable.iter(value=%2) : !Any
+  │       %4 = py.constant.constant None : !py.NoneType
+  │       %5 = py.iterable.next(iter=%3) : !Any
+  │       %6 = py.cmp.is(lhs=%5, rhs=%4) : !py.bool
+  │            cf.cond_br %6 goto ^2(%total) else ^1(%5, %total)
+  ^1(%i, %total_2):
+  │       %7 = py.constant.constant 2 : !py.int
+  │       %8 = py.binop.mult(%i : !py.int, %7) : !py.int
+  │ %total_1 = py.binop.add(%total_2 : !py.int, %8) : !py.int
+  │       %9 = py.iterable.next(iter=%3) : !Any
+  │      %10 = py.cmp.is(lhs=%9, rhs=%4) : !py.bool
+  │            cf.cond_br %10 goto ^2(%total_1) else ^1(%9, %total_1)
+  ^2(%total_3):
+  │            func.return %total_3 : !py.int
+} // func.func with_a_loop
+
+case              pass                 it lvl       ms    memKB   peakKB  chg      stmt      ssa    blk   dead   const    gate
+------------------------------------------------------------------------------------------------------------------------------
+lots_of_constants Canonicalize          1   0     0.05      1.9      2.6    F    12->12   11->11   1->1   1->1    6->6    0->0
+lots_of_constants PostInference         1   1     0.10      1.3     76.6    F    12->12   11->11   1->1   1->1    6->6    0->0
+lots_of_constants TypeInfer             1   0     8.43     86.5    104.1    T    12->12   11->11   1->1   1->1    6->6    0->0
+lots_of_constants Fold                  1   0     5.15     29.4     32.5    T     12->3    11->2   1->1   1->0    6->1    0->0
+lots_of_constants Fold                  2   0     2.92      3.1     25.5    F      3->3     2->2   1->1   0->0    1->1    0->0
+dead_code         Canonicalize          1   0     0.05      0.3      0.4    F      7->7     6->6   1->1   2->2    4->4    0->0
+dead_code         PostInference         1   1     0.08      0.3     32.0    F      7->7     6->6   1->1   2->2    4->4    0->0
+dead_code         TypeInfer             1   0     5.52     12.8     32.0    T      7->7     6->6   1->1   2->2    4->4    0->0
+dead_code         Fold                  1   0     3.79      3.2     27.7    T      7->3     6->2   1->1   2->0    4->1    0->0
+dead_code         Fold                  2   0     3.13      2.7     25.1    F      3->3     2->2   1->1   0->0    1->1    0->0
+nothing_to_do     Canonicalize          1   0     0.04      0.3      0.4    F      3->3     2->2   1->1   1->1    1->1    0->0
+nothing_to_do     PostInference         1   1     0.07      0.3     29.1    F      3->3     2->2   1->1   1->1    1->1    0->0
+nothing_to_do     TypeInfer             1   0     3.83     11.4     29.1    T      3->3     2->2   1->1   1->1    1->1    0->0
+nothing_to_do     Fold                  1   0     2.54      2.5     25.2    T      3->2     2->1   1->1   1->0    1->0    0->0
+nothing_to_do     Fold                  2   0     2.06      2.5     24.7    F      2->2     1->1   1->1   0->0    0->0    0->0
+with_a_loop       Canonicalize          1   0     0.04      0.3      0.4    F    17->17   14->14   3->3   1->1    6->6    0->0
+with_a_loop       PostInference         1   1     0.06      0.2     38.7    F    17->17   14->14   3->3   1->1    6->6    0->0
+with_a_loop       TypeInfer             1   0     5.59     24.7     45.4    T    17->17   14->14   3->3   1->1    6->6    0->0
+with_a_loop       Fold                  1   0     3.54      9.0     34.0    T    17->16   14->13   3->3   1->0    6->5    0->0
+with_a_loop       Fold                  2   0     3.14      5.9     34.4    F    16->16   13->13   3->3   0->0    5->5    0->0
+
+Wrote 20 rows x 34 columns to pass_log.csv

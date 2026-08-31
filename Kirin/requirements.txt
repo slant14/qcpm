@@ -1,0 +1,3 @@
+bloqade-circuit==0.15.0
+kirin-toolchain==0.22.14
+lark==1.3.1

@@ -1,0 +1,289 @@
+
+==============================================================
+COMPILING CIRCUIT: ghz_state
+==============================================================
+
+gates before: 4
+
+--- IR before passes ---
+func.func @ghz_state() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%ghz_state_self):
+  │  %0 = py.constant.constant 4 : !py.int
+  │  %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │  %1 = py.constant.constant 0 : !py.int
+  │  %2 = qasm2.core.qreg.get(reg=%q, idx=%1) : !py.Qubit
+  │       qasm2.uop.h(qarg=%2)
+  │  %3 = py.constant.constant 0 : !py.int
+  │  %4 = qasm2.core.qreg.get(reg=%q, idx=%3) : !py.Qubit
+  │  %5 = py.constant.constant 1 : !py.int
+  │  %6 = qasm2.core.qreg.get(reg=%q, idx=%5) : !py.Qubit
+  │       qasm2.uop.CX(ctrl=%4, qarg=%6)
+  │  %7 = py.constant.constant 1 : !py.int
+  │  %8 = qasm2.core.qreg.get(reg=%q, idx=%7) : !py.Qubit
+  │  %9 = py.constant.constant 2 : !py.int
+  │ %10 = qasm2.core.qreg.get(reg=%q, idx=%9) : !py.Qubit
+  │       qasm2.uop.CX(ctrl=%8, qarg=%10)
+  │ %11 = py.constant.constant 2 : !py.int
+  │ %12 = qasm2.core.qreg.get(reg=%q, idx=%11) : !py.Qubit
+  │ %13 = py.constant.constant 3 : !py.int
+  │ %14 = qasm2.core.qreg.get(reg=%q, idx=%13) : !py.Qubit
+  │       qasm2.uop.CX(ctrl=%12, qarg=%14)
+  │       func.return %q
+} // func.func ghz_state
+
+gates after: 4
+
+--- IR after passes ---
+func.func @ghz_state() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%ghz_state_self):
+  │ %0 = py.constant.constant 4 : !py.int
+  │ %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │ %1 = py.constant.constant 0 : !py.int
+  │ %2 = qasm2.core.qreg.get(reg=%q, idx=%1) : !py.Qubit
+  │      qasm2.uop.h(qarg=%2)
+  │ %3 = py.constant.constant 1 : !py.int
+  │ %4 = qasm2.core.qreg.get(reg=%q, idx=%3) : !py.Qubit
+  │      qasm2.uop.CX(ctrl=%2, qarg=%4)
+  │ %5 = py.constant.constant 2 : !py.int
+  │ %6 = qasm2.core.qreg.get(reg=%q, idx=%5) : !py.Qubit
+  │      qasm2.uop.CX(ctrl=%4, qarg=%6)
+  │ %7 = py.constant.constant 3 : !py.int
+  │ %8 = qasm2.core.qreg.get(reg=%q, idx=%7) : !py.Qubit
+  │      qasm2.uop.CX(ctrl=%6, qarg=%8)
+  │      func.return %q
+} // func.func ghz_state
+
+==============================================================
+COMPILING CIRCUIT: all_hadamards
+==============================================================
+
+gates before: 6
+
+--- IR before passes ---
+func.func @all_hadamards() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%all_hadamards_self):
+  │  %0 = py.constant.constant 6 : !py.int
+  │  %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │  %1 = py.constant.constant 0 : !py.int
+  │  %2 = qasm2.core.qreg.get(reg=%q, idx=%1) : !py.Qubit
+  │       qasm2.uop.h(qarg=%2)
+  │  %3 = py.constant.constant 1 : !py.int
+  │  %4 = qasm2.core.qreg.get(reg=%q, idx=%3) : !py.Qubit
+  │       qasm2.uop.h(qarg=%4)
+  │  %5 = py.constant.constant 2 : !py.int
+  │  %6 = qasm2.core.qreg.get(reg=%q, idx=%5) : !py.Qubit
+  │       qasm2.uop.h(qarg=%6)
+  │  %7 = py.constant.constant 3 : !py.int
+  │  %8 = qasm2.core.qreg.get(reg=%q, idx=%7) : !py.Qubit
+  │       qasm2.uop.h(qarg=%8)
+  │  %9 = py.constant.constant 4 : !py.int
+  │ %10 = qasm2.core.qreg.get(reg=%q, idx=%9) : !py.Qubit
+  │       qasm2.uop.h(qarg=%10)
+  │ %11 = py.constant.constant 5 : !py.int
+  │ %12 = qasm2.core.qreg.get(reg=%q, idx=%11) : !py.Qubit
+  │       qasm2.uop.h(qarg=%12)
+  │       func.return %q
+} // func.func all_hadamards
+
+gates after: 6
+
+--- IR after passes ---
+func.func @all_hadamards() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%all_hadamards_self):
+  │  %0 = py.constant.constant 6 : !py.int
+  │  %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │  %1 = py.constant.constant 0 : !py.int
+  │  %2 = qasm2.core.qreg.get(reg=%q, idx=%1) : !py.Qubit
+  │       qasm2.uop.h(qarg=%2)
+  │  %3 = py.constant.constant 1 : !py.int
+  │  %4 = qasm2.core.qreg.get(reg=%q, idx=%3) : !py.Qubit
+  │       qasm2.uop.h(qarg=%4)
+  │  %5 = py.constant.constant 2 : !py.int
+  │  %6 = qasm2.core.qreg.get(reg=%q, idx=%5) : !py.Qubit
+  │       qasm2.uop.h(qarg=%6)
+  │  %7 = py.constant.constant 3 : !py.int
+  │  %8 = qasm2.core.qreg.get(reg=%q, idx=%7) : !py.Qubit
+  │       qasm2.uop.h(qarg=%8)
+  │  %9 = py.constant.constant 4 : !py.int
+  │ %10 = qasm2.core.qreg.get(reg=%q, idx=%9) : !py.Qubit
+  │       qasm2.uop.h(qarg=%10)
+  │ %11 = py.constant.constant 5 : !py.int
+  │ %12 = qasm2.core.qreg.get(reg=%q, idx=%11) : !py.Qubit
+  │       qasm2.uop.h(qarg=%12)
+  │       func.return %q
+} // func.func all_hadamards
+
+==============================================================
+COMPILING CIRCUIT: rotations
+==============================================================
+
+gates before: 4
+
+--- IR before passes ---
+func.func @rotations() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%rotations_self):
+  │     %0 = py.constant.constant 4 : !py.int
+  │     %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │ %theta = py.constant.constant 1.570795 : !py.float
+  │     %1 = py.constant.constant 0 : !py.int
+  │     %2 = qasm2.core.qreg.get(reg=%q, idx=%1) : !py.Qubit
+  │          qasm2.uop.rz(qarg=%2, theta=%theta)
+  │     %3 = py.constant.constant 1 : !py.int
+  │     %4 = qasm2.core.qreg.get(reg=%q, idx=%3) : !py.Qubit
+  │     %5 = py.constant.constant 3.14159 : !py.float
+  │          qasm2.uop.rz(qarg=%4, theta=%5)
+  │     %6 = py.constant.constant 2 : !py.int
+  │     %7 = qasm2.core.qreg.get(reg=%q, idx=%6) : !py.Qubit
+  │     %8 = py.constant.constant 0.7853975 : !py.float
+  │          qasm2.uop.rz(qarg=%7, theta=%8)
+  │     %9 = py.constant.constant 3 : !py.int
+  │    %10 = qasm2.core.qreg.get(reg=%q, idx=%9) : !py.Qubit
+  │    %11 = py.constant.constant 2.570795 : !py.float
+  │          qasm2.uop.rz(qarg=%10, theta=%11)
+  │          func.return %q
+} // func.func rotations
+
+gates after: 4
+
+--- IR after passes ---
+func.func @rotations() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%rotations_self):
+  │     %0 = py.constant.constant 4 : !py.int
+  │     %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │ %theta = py.constant.constant 1.570795 : !py.float
+  │     %1 = py.constant.constant 0 : !py.int
+  │     %2 = qasm2.core.qreg.get(reg=%q, idx=%1) : !py.Qubit
+  │          qasm2.uop.rz(qarg=%2, theta=%theta)
+  │     %3 = py.constant.constant 1 : !py.int
+  │     %4 = qasm2.core.qreg.get(reg=%q, idx=%3) : !py.Qubit
+  │     %5 = py.constant.constant 3.14159 : !py.float
+  │          qasm2.uop.rz(qarg=%4, theta=%5)
+  │     %6 = py.constant.constant 2 : !py.int
+  │     %7 = qasm2.core.qreg.get(reg=%q, idx=%6) : !py.Qubit
+  │     %8 = py.constant.constant 0.7853975 : !py.float
+  │          qasm2.uop.rz(qarg=%7, theta=%8)
+  │     %9 = py.constant.constant 3 : !py.int
+  │    %10 = qasm2.core.qreg.get(reg=%q, idx=%9) : !py.Qubit
+  │    %11 = py.constant.constant 2.570795 : !py.float
+  │          qasm2.uop.rz(qarg=%10, theta=%11)
+  │          func.return %q
+} // func.func rotations
+
+==============================================================
+COMPILING CIRCUIT: loop_circuit
+==============================================================
+
+gates before: 1
+
+--- IR before passes ---
+func.func @loop_circuit() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%loop_circuit_self):
+  │         %0 = py.constant.constant 5 : !py.int
+  │         %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │         %1 = py.constant.constant IList(range(0, 5)) : !py.IList[!py.int, Literal(5,int)]
+  │ %q_1, %q_2 = scf.for %i : !py.int in %1 -> !py.IList[!py.Qubit, !Any], !py.IList[!py.Qubit, !Any]
+  │              │ iter_args(%q_3 : !py.IList[!py.Qubit, !Any] = %q, %q_4 : !py.IList[!py.Qubit, !Any] = %q) {
+  │              │ %2 = qasm2.core.qreg.get(reg=%q_3 : !py.IList[!py.Qubit, !Any], idx=%i : !py.int) : !py.Qubit
+  │              │      qasm2.uop.h(qarg=%2)
+  │              │      scf.yield %q_3 : !py.IList[!py.Qubit, !Any], %q_3 : !py.IList[!py.Qubit, !Any]
+  │              } -> purity=False
+  │              func.return %q_1
+} // func.func loop_circuit
+
+gates after: 5
+
+--- IR after passes ---
+func.func @loop_circuit() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%loop_circuit_self):
+  │   %0 = py.constant.constant 5 : !py.int
+  │   %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │   %i = py.constant.constant 0 : !py.int
+  │   %1 = qasm2.core.qreg.get(reg=%q, idx=%i) : !py.Qubit
+  │        qasm2.uop.h(qarg=%1)
+  │ %i_1 = py.constant.constant 1 : !py.int
+  │   %2 = qasm2.core.qreg.get(reg=%q, idx=%i_1) : !py.Qubit
+  │        qasm2.uop.h(qarg=%2)
+  │ %i_2 = py.constant.constant 2 : !py.int
+  │   %3 = qasm2.core.qreg.get(reg=%q, idx=%i_2) : !py.Qubit
+  │        qasm2.uop.h(qarg=%3)
+  │ %i_3 = py.constant.constant 3 : !py.int
+  │   %4 = qasm2.core.qreg.get(reg=%q, idx=%i_3) : !py.Qubit
+  │        qasm2.uop.h(qarg=%4)
+  │ %i_4 = py.constant.constant 4 : !py.int
+  │   %5 = qasm2.core.qreg.get(reg=%q, idx=%i_4) : !py.Qubit
+  │        qasm2.uop.h(qarg=%5)
+  │        func.return %q
+} // func.func loop_circuit
+
+==============================================================
+COMPILING CIRCUIT: already_minimal
+==============================================================
+
+gates before: 2
+
+--- IR before passes ---
+func.func @already_minimal() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%already_minimal_self):
+  │ %0 = py.constant.constant 2 : !py.int
+  │ %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │ %1 = py.constant.constant 0 : !py.int
+  │ %2 = qasm2.core.qreg.get(reg=%q, idx=%1) : !py.Qubit
+  │      qasm2.uop.h(qarg=%2)
+  │ %3 = py.constant.constant 0 : !py.int
+  │ %4 = qasm2.core.qreg.get(reg=%q, idx=%3) : !py.Qubit
+  │ %5 = py.constant.constant 1 : !py.int
+  │ %6 = qasm2.core.qreg.get(reg=%q, idx=%5) : !py.Qubit
+  │      qasm2.uop.CX(ctrl=%4, qarg=%6)
+  │      func.return %q
+} // func.func already_minimal
+
+gates after: 2
+
+--- IR after passes ---
+func.func @already_minimal() -> !py.IList[!py.Qubit, !Any] {
+  ^0(%already_minimal_self):
+  │ %0 = py.constant.constant 2 : !py.int
+  │ %q = qasm2.core.qreg.new(n_qubits=%0) : !py.IList[!py.Qubit, !Any]
+  │ %1 = py.constant.constant 0 : !py.int
+  │ %2 = qasm2.core.qreg.get(reg=%q, idx=%1) : !py.Qubit
+  │      qasm2.uop.h(qarg=%2)
+  │ %3 = py.constant.constant 1 : !py.int
+  │ %4 = qasm2.core.qreg.get(reg=%q, idx=%3) : !py.Qubit
+  │      qasm2.uop.CX(ctrl=%2, qarg=%4)
+  │      func.return %q
+} // func.func already_minimal
+
+case              pass                 it lvl       ms    memKB   peakKB  chg      stmt      ssa    blk   dead   const    gate
+------------------------------------------------------------------------------------------------------------------------------
+ghz_state         PostInference         1   1     0.08      0.3     62.8    F    15->15   10->10   1->1   0->0    5->5    4->4
+ghz_state         PostInference         1   1     0.06      0.2     77.9    F    15->15   10->10   1->1   0->0    5->5    4->4
+ghz_state         Fold                  1   2     3.49      2.6     92.4    F    15->15   10->10   1->1   0->0    5->5    4->4
+ghz_state         CanonicalizeIList     1   1     6.75     10.0     92.4    F    15->15   10->10   1->1   0->0    5->5    4->4
+ghz_state         QASM2Fold             1   0    29.96     72.6     92.4    T    21->15   16->10   1->1   0->0    8->5    4->4
+ghz_state         UOpToParallel         1   0     6.28     43.5     63.1    T    15->15   10->10   1->1   0->0    5->5    4->4
+all_hadamards     PostInference         1   1     0.07      0.3     44.7    F    21->21   14->14   1->1   0->0    7->7    6->6
+all_hadamards     PostInference         1   1     0.07      0.2     54.5    F    21->21   14->14   1->1   0->0    7->7    6->6
+all_hadamards     Fold                  1   2     3.98      2.9     65.5    F    21->21   14->14   1->1   0->0    7->7    6->6
+all_hadamards     CanonicalizeIList     1   1     6.64      5.0     65.5    F    21->21   14->14   1->1   0->0    7->7    6->6
+all_hadamards     QASM2Fold             1   0    29.58     39.2     65.5    F    21->21   14->14   1->1   0->0    7->7    6->6
+all_hadamards     UOpToParallel         1   0     7.21     20.1     54.1    T    21->21   14->14   1->1   0->0    7->7    6->6
+rotations         PostInference         1   1     0.07      0.2     42.8    F    19->19   14->14   1->1   0->0    9->9    4->4
+rotations         PostInference         1   1     0.07      0.2     49.7    F    19->19   14->14   1->1   0->0    9->9    4->4
+rotations         Fold                  1   2     3.46      1.2     57.6    F    19->19   14->14   1->1   0->0    9->9    4->4
+rotations         CanonicalizeIList     1   1     5.25      2.7     57.6    F    19->19   14->14   1->1   0->0    9->9    4->4
+rotations         QASM2Fold             1   0    26.29     28.9     57.6    F    19->19   14->14   1->1   0->0    9->9    4->4
+rotations         UOpToParallel         1   0     6.48     13.1     52.2    T    19->19   14->14   1->1   0->0    9->9    4->4
+loop_circuit      PostInference         1   1     0.07      0.3     64.4    F    18->18   12->12   1->1   0->0    6->6    5->5
+loop_circuit      PostInference         1   1     0.07      0.3     71.8    F    18->18   12->12   1->1   0->0    6->6    5->5
+loop_circuit      Fold                  1   2     3.38      3.4     81.2    F    18->18   12->12   1->1   0->0    6->6    5->5
+loop_circuit      CanonicalizeIList     1   1     5.96      5.3     81.2    F    18->18   12->12   1->1   0->0    6->6    5->5
+loop_circuit      QASM2Fold             1   0    30.45     54.8     81.2    T     8->18    6->12   1->1   1->0    2->6    1->5
+loop_circuit      UOpToParallel         1   0     6.39     12.5     50.3    T    18->18   12->12   1->1   0->0    6->6    5->5
+already_minimal   PostInference         1   1     0.08      0.3     35.4    F      9->9     6->6   1->1   0->0    3->3    2->2
+already_minimal   PostInference         1   1     0.09      0.3     39.4    F      9->9     6->6   1->1   0->0    3->3    2->2
+already_minimal   Fold                  1   2     2.90      1.7     46.9    F      9->9     6->6   1->1   0->0    3->3    2->2
+already_minimal   CanonicalizeIList     1   1     4.25      3.9     46.9    F      9->9     6->6   1->1   0->0    3->3    2->2
+already_minimal   QASM2Fold             1   0    20.59     21.5     46.9    T     11->9     8->6   1->1   0->0    4->3    2->2
+already_minimal   UOpToParallel         1   0     4.96      9.8     40.9    T      9->9     6->6   1->1   0->0    3->3    2->2
+
+Wrote 30 rows x 34 columns to quantum_pass_log.csv
